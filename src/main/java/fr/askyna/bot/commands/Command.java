@@ -8,7 +8,10 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public abstract class Command extends ListenerAdapter {
 
@@ -22,7 +25,7 @@ public abstract class Command extends ListenerAdapter {
     public List<Permission> permissionNeeded = new ArrayList<>();
     public List<String> aliases = new ArrayList<>();
 
-    public Command(Class<? extends Module> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded, ArrayList<String> aliases) {
+    public void Command(Class<? extends Module> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded, ArrayList<String> aliases) {
         this.module = module;
         this.name = name;
         this.description = description;
@@ -34,7 +37,7 @@ public abstract class Command extends ListenerAdapter {
         ModuleCommandList.put(module, this.getClass());
     }
 
-    public Command(Class<? extends Module> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded) {
+    public void Command(Class<? extends Module> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded) {
         this.module = module;
         this.name = name;
         this.description = description;
@@ -45,49 +48,49 @@ public abstract class Command extends ListenerAdapter {
         ModuleCommandList.put(module, this.getClass());
     }
 
-    public Command(Class<? extends Module> module, String name, String description, String usage, Category category) {
+    public void Command(Class<? extends Module> module, String name, String description, String usage, Category category) {
         this.module = module;
         this.name = name;
         this.description = description;
         this.usage = usage;
         this.category = category;
-        this.aliases = Collections.singletonList(name);
+        this.aliases = Arrays.asList(name);
 
         ModuleCommandList.put(module, this.getClass());
     }
 
-    public Command(Class<? extends Module> module, String name, String description, String usage) {
+    public void Command(Class<? extends Module> module, String name, String description, String usage) {
         this.module = module;
         this.name = name;
         this.description = description;
         this.usage = usage;
         this.category = Category.GENERAL;
-        this.aliases = Collections.singletonList(name);
+        this.aliases = Arrays.asList(name);
 
         ModuleCommandList.put(module, this.getClass());
     }
 
-    public Command(Class<? extends Module> module, String name, String description) {
+    public void Command(Class<? extends Module> module, String name, String description) {
         this.module = module;
         this.name = name;
         this.description = description;
         this.usage = "No usage given";
         this.category = Category.GENERAL;
         this.permissionNeeded = null;
-        this.aliases = Collections.singletonList(name);
+        this.aliases = Arrays.asList(name);
 
 
         ModuleCommandList.put(module, this.getClass());
     }
 
-    public Command(Class<? extends Module> module, String name) {
+    public void Command(Class<? extends Module> module, String name) {
         this.module = module;
         this.name = name;
         this.description = "No description given";
         this.usage = "No usage given";
         this.category = Category.GENERAL;
         this.permissionNeeded = null;
-        this.aliases = Collections.singletonList(name);
+        this.aliases = Arrays.asList(name);
 
         ModuleCommandList.put(module, this.getClass());
     }

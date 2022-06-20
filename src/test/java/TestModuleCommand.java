@@ -9,9 +9,10 @@ import java.util.Collections;
 
 public class TestModuleCommand extends Command {
 
-    public TestModuleCommand(Class<? extends Module> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded, ArrayList<String> aliases) {
-        super(TestModule.class, "test", "FJESZ0G", "grezogjezàprg", Category.GENERAL, null, null);
-        System.out.println("RAGLA");
+    public TestModuleCommand(){
+        this.module = TestModule.class;
+        this.name = "AA";
+        this.description = "BB";
     }
 
     @Override

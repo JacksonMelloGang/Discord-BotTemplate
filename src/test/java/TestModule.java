@@ -4,7 +4,7 @@ import fr.askyna.bot.modules.ModuleManager;
 public class TestModule extends Module {
 
     public static void main(String[] args) {
-        aa();
+        ModuleManager.getModules().add(TestModule.class);
 
         ModuleManager.loadModules();
         System.out.println("Modules loaded!");
@@ -12,10 +12,6 @@ public class TestModule extends Module {
         ModuleManager.unloadModules();
         System.out.println("Modules unloaded!");
 
-    }
-
-    public static void aa(){
-        ModuleManager.getModules().add(TestModule.class);
     }
 
     @Override
