@@ -1,23 +1,21 @@
 import fr.askyna.bot.modules.Module;
-import fr.askyna.bot.modules.ModuleLoader;
+import fr.askyna.bot.modules.ModuleManager;
 
 public class TestModule extends Module {
 
     public static void main(String[] args) {
         aa();
 
-        ModuleLoader.loadModules();
+        ModuleManager.loadModules();
         System.out.println("Modules loaded!");
 
-
-        ModuleLoader.unloadModules();
+        ModuleManager.unloadModules();
         System.out.println("Modules unloaded!");
-
 
     }
 
     public static void aa(){
-        Module.getModules().add(TestModule.class);
+        ModuleManager.getModules().add(TestModule.class);
     }
 
     @Override
@@ -29,6 +27,5 @@ public class TestModule extends Module {
     public void onUnload() {
         System.out.println("Module unloaded");
     }
-
 
 }
