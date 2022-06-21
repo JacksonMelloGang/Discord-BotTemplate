@@ -1,11 +1,11 @@
+package fr.askyna.bot.test;
+
 import fr.askyna.bot.Category;
 import fr.askyna.bot.commands.Command;
-import fr.askyna.bot.modules.Module;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class TestModuleCommand extends Command {
 
@@ -49,5 +49,4 @@ public class TestModuleCommand extends Command {
     public ArrayList<String> getAliases() {
         return null;
     }
-
 }

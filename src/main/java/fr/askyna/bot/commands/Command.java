@@ -10,12 +10,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public abstract class Command extends ListenerAdapter {
 
-    protected HashMap<Class<?extends Module> , Class<? extends Command>> ModuleCommandList = new HashMap<>();
+    protected final CommandManager commandManager = new CommandManager();
 
     public Class<?extends Module> module;
     public String name;
@@ -34,7 +33,7 @@ public abstract class Command extends ListenerAdapter {
         this.permissionNeeded = permissionNeeded;
         this.aliases = aliases;
 
-        ModuleCommandList.put(module, this.getClass());
+        commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
     public void Command(Class<? extends Module> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded) {
@@ -45,7 +44,7 @@ public abstract class Command extends ListenerAdapter {
         this.category = category;
         this.permissionNeeded = null;
 
-        ModuleCommandList.put(module, this.getClass());
+        commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
     public void Command(Class<? extends Module> module, String name, String description, String usage, Category category) {
@@ -56,7 +55,7 @@ public abstract class Command extends ListenerAdapter {
         this.category = category;
         this.aliases = Arrays.asList(name);
 
-        ModuleCommandList.put(module, this.getClass());
+        commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
     public void Command(Class<? extends Module> module, String name, String description, String usage) {
@@ -67,7 +66,7 @@ public abstract class Command extends ListenerAdapter {
         this.category = Category.GENERAL;
         this.aliases = Arrays.asList(name);
 
-        ModuleCommandList.put(module, this.getClass());
+        commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
     public void Command(Class<? extends Module> module, String name, String description) {
@@ -80,7 +79,7 @@ public abstract class Command extends ListenerAdapter {
         this.aliases = Arrays.asList(name);
 
 
-        ModuleCommandList.put(module, this.getClass());
+        commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
     public void Command(Class<? extends Module> module, String name) {
@@ -92,7 +91,7 @@ public abstract class Command extends ListenerAdapter {
         this.permissionNeeded = null;
         this.aliases = Arrays.asList(name);
 
-        ModuleCommandList.put(module, this.getClass());
+        commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
     public abstract void execute(String[] args, String message, MessageReceivedEvent event);
@@ -123,7 +122,7 @@ public abstract class Command extends ListenerAdapter {
     }
 
     @Override
-    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+    public final void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if(event.getAuthor().isBot()) return;
 
         if(event.getMessage().getContentRaw().startsWith(Config.PREFIX)) {
@@ -133,7 +132,7 @@ public abstract class Command extends ListenerAdapter {
         }
     }
 
-    public boolean hasPermission(MessageReceivedEvent event) {
+    public final boolean hasPermission(MessageReceivedEvent event) {
         if(this.permissionNeeded == null){
             if(event.getMember().hasPermission(Permission.MESSAGE_SEND)){
                 return true;

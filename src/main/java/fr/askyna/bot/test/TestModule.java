@@ -1,3 +1,5 @@
+package fr.askyna.bot.test;
+
 import fr.askyna.bot.modules.Module;
 
 public class TestModule extends Module {
@@ -12,7 +14,8 @@ public class TestModule extends Module {
 
     @Override
     public void onUnload() {
-        System.out.println("Module unloaded");
+        System.out.println("Unloading " + this.getModulename());
     }
+
 
 }
