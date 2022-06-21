@@ -1,6 +1,5 @@
 package fr.askyna.bot.commands;
 
-import fr.askyna.bot.Category;
 import fr.askyna.bot.config.Config;
 import fr.askyna.bot.modules.Module;
 import net.dv8tion.jda.api.Permission;

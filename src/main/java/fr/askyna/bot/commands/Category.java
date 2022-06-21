@@ -1,4 +1,4 @@
-package fr.askyna.bot;
+package fr.askyna.bot.commands;
 
 import javax.annotation.Nullable;
 

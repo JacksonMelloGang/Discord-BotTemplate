@@ -6,6 +6,7 @@ import fr.askyna.bot.config.ConfigHandler;
 import fr.askyna.bot.modules.ModuleManager;
 import fr.askyna.bot.test.TestModule;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -38,8 +39,13 @@ public class Askyna {
 
         ModuleManager.registerModule(TestModule.class);
 
-
+        InitializeFolders();
         InitializeConsoleSetup();
+    }
+
+    private static void InitializeFolders() {
+        FileNameExtensionFilter f = new FileNameExtensionFilter("Jar Files", "jar");
+        
     }
 
     private static void InitializeConsoleSetup() {
