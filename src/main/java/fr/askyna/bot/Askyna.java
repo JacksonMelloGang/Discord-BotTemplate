@@ -7,8 +7,6 @@ import fr.askyna.bot.modules.ModuleManager;
 import fr.askyna.bot.test.TestModule;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class Askyna {
 
@@ -16,13 +14,9 @@ public class Askyna {
 
     public static void main(String[] args) {
 
-        try {
-            ConfigHandler.createconfigfile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+
+        ConfigHandler.CreateConfigFolder();
+
 
         if(args.length != 0){
             for(String s : args){

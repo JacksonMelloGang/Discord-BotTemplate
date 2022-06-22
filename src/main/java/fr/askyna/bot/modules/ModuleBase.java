@@ -2,11 +2,12 @@ package fr.askyna.bot.modules;
 
 import fr.askyna.bot.commands.Command;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Module {
+public abstract class ModuleBase {
 
     private final String modulename;
     private final String moduledescription;
@@ -14,7 +15,6 @@ public abstract class Module {
     private final String moduleAuthor;
     private final List<Class<? extends Command>> commands_list = new ArrayList<>();
     private final List<Class<? extends Command>> enabled_commands = new ArrayList<>();
-
 
     public abstract void onLoad();
 
@@ -25,25 +25,31 @@ public abstract class Module {
         onLoad();
     }
 
-    public Module(String name, String description, String author){
+    public ModuleBase(String name, String description, String author){
         this.modulename = name;
         this.moduledescription = description;
         this.moduleAuthor = author;
         this.moduleid = name.hashCode();
+
+        InitializeDataFolder();
     }
 
-    public Module(String name, String description){
+    public ModuleBase(String name, String description){
         this.modulename = name;
         this.moduledescription = description;
         this.moduleAuthor = "No Author given";
         this.moduleid = name.hashCode();
+
+        InitializeDataFolder();
     }
 
-    public Module(String name){
+    public ModuleBase(String name){
         this.modulename = name;
         this.moduledescription = "No description given";
         this.moduleAuthor = "No Author given";
         this.moduleid = name.hashCode();
+
+        InitializeDataFolder();
     }
 
     public boolean registerCommand(Class<? extends Command> command){
@@ -78,4 +84,13 @@ public abstract class Module {
     public List<Class<? extends Command>> getEnabled_commands() {
         return enabled_commands;
     }
+
+    private void InitializeDataFolder() {
+        File f = new File("./data/plugins/" + getModulename());
+        f.mkdirs();
+    }
+
+
+
+
 }

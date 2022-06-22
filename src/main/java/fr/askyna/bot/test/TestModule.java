@@ -1,15 +1,15 @@
 package fr.askyna.bot.test;
 
-import fr.askyna.bot.modules.Module;
+import fr.askyna.bot.modules.ModuleBase;
 
-public class TestModule extends Module {
+public class TestModule extends ModuleBase {
     public TestModule() {
         super("ABC", "ABC_Description", "Askyna");
     }
 
     @Override
     public void onLoad() {
-        System.out.println("Module loaded");
+        System.out.println("ModuleBase loaded");
     }
 
     @Override

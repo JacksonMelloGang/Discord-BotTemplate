@@ -5,13 +5,13 @@ import java.util.List;
 
 public class ModuleManager {
 
-    private static List<Class <? extends Module>> modules = new ArrayList<>();
-    private static List<Class <? extends Module>> loaded_modules = new ArrayList<>();
+    private static List<Class <? extends ModuleBase>> modules = new ArrayList<>();
+    private static List<Class <? extends ModuleBase>> loaded_modules = new ArrayList<>();
 
     public static void loadModules() {
-        for (Class<? extends Module> module : getModules()) {
+        for (Class<? extends ModuleBase> module : getModules()) {
             try {
-                Module m = module.newInstance();
+                ModuleBase m = module.newInstance();
                 m.onLoad();
                 loaded_modules.add(m.getClass());
             } catch (InstantiationException | IllegalAccessException e) {
@@ -23,7 +23,7 @@ public class ModuleManager {
     public static void unloadModules() {
         for(int i = 0; i < getLoaded_modules().size(); i++){
             try {
-                Module m = getLoaded_modules().get(i).newInstance();
+                ModuleBase m = getLoaded_modules().get(i).newInstance();
                 m.onUnload();
                 loaded_modules.remove(m.getClass());
             } catch (InstantiationException | IllegalAccessException e) {
@@ -35,7 +35,7 @@ public class ModuleManager {
     public static void reloadModules() {
         for(int i = 0; i < getLoaded_modules().size(); i++) {
             try {
-                Module m = getLoaded_modules().get(i).newInstance();
+                ModuleBase m = getLoaded_modules().get(i).newInstance();
                 m.onUnload();
                 m.onLoad();
             } catch (InstantiationException | IllegalAccessException e) {
@@ -44,10 +44,10 @@ public class ModuleManager {
         }
     }
 
-    public static void registerModule(Class<? extends Module> module) {
+    public static void registerModule(Class<? extends ModuleBase> module) {
         System.out.println("Registering module " + module.getName());
         try {
-            Module m = module.newInstance();
+            ModuleBase m = module.newInstance();
             m.onLoad();
             loaded_modules.add(module);
         } catch (InstantiationException e) {
@@ -57,11 +57,11 @@ public class ModuleManager {
         }
     }
 
-    public static void unregisterModule(Class<? extends Module> module) {
+    public static void unregisterModule(Class<? extends ModuleBase> module) {
 
         System.out.println("Unregistering module " + module.getName());
         try {
-            Module m = module.newInstance();
+            ModuleBase m = module.newInstance();
             m.onUnload();
             loaded_modules.remove(module);
         } catch (InstantiationException e) {
@@ -72,11 +72,11 @@ public class ModuleManager {
 
     }
 
-    public static List<Class<? extends Module>> getModules() {
+    public static List<Class<? extends ModuleBase>> getModules() {
         return modules;
     }
 
-    public static List<Class<? extends Module>> getLoaded_modules() {
+    public static List<Class<? extends ModuleBase>> getLoaded_modules() {
         return loaded_modules;
     }
 
