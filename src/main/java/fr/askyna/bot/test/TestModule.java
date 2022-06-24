@@ -1,10 +1,12 @@
 package fr.askyna.bot.test;
 
-import fr.askyna.bot.modules.Module;
+import fr.askyna.bot.modules.ModuleBase;
 
-public class TestModule extends Module {
-    public TestModule() {
-        super("ABC", "ABC_Description", "Askyna");
+public class TestModule extends ModuleBase {
+
+
+    public TestModule(String name, String description) {
+        super(name, description);
     }
 
     @Override
@@ -14,8 +16,7 @@ public class TestModule extends Module {
 
     @Override
     public void onUnload() {
-        System.out.println("Unloading " + this.getModulename());
+        System.out.println("Unloading " + getName());
     }
-
 
 }

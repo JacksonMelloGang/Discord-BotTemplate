@@ -11,24 +11,19 @@ import java.nio.file.Paths;
 public class Config {
 
     private String filepath;
-
-    private String bottoken;
-    private String botprefix;
-
-    private String rethinkip;
-    private String rethinkdbname;
-    private int rethinkdbport;
+    public static Yaml yaml = new Yaml();
+    public static final String TOKEN = "";
+    public static final String PREFIX = "!";
 
 
     public Config(String filepath) throws IOException {
         this.filepath = filepath;
 
-        Yaml yaml = new Yaml();
-        Config config = yaml.load(Files.newInputStream(Paths.get(System.getenv("os.dir") + "/config.yml")));
+
+
+        ConfigurationYaml config = yaml.load(Files.newInputStream(Paths.get(System.getenv("os.dir") + "/config.yml")));
     }
 
 
-    public static final String TOKEN = "";
-    public static final String PREFIX = "!";
 
 }

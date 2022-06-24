@@ -1,8 +1,7 @@
 package fr.askyna.bot.commands;
 
-import fr.askyna.bot.Category;
 import fr.askyna.bot.config.Config;
-import fr.askyna.bot.modules.Module;
+import fr.askyna.bot.modules.ModuleBasee;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -16,7 +15,7 @@ public abstract class Command extends ListenerAdapter {
 
     protected final CommandManager commandManager = new CommandManager();
 
-    public Class<?extends Module> module;
+    public Class<?extends ModuleBasee> module;
     public String name;
     public String description;
     public String usage;
@@ -24,7 +23,7 @@ public abstract class Command extends ListenerAdapter {
     public List<Permission> permissionNeeded = new ArrayList<>();
     public List<String> aliases = new ArrayList<>();
 
-    public void Command(Class<? extends Module> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded, ArrayList<String> aliases) {
+    public void Command(Class<? extends ModuleBasee> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded, ArrayList<String> aliases) {
         this.module = module;
         this.name = name;
         this.description = description;
@@ -36,7 +35,7 @@ public abstract class Command extends ListenerAdapter {
         commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
-    public void Command(Class<? extends Module> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded) {
+    public void Command(Class<? extends ModuleBasee> module, String name, String description, String usage, Category category, ArrayList<Permission> permissionNeeded) {
         this.module = module;
         this.name = name;
         this.description = description;
@@ -47,7 +46,7 @@ public abstract class Command extends ListenerAdapter {
         commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
-    public void Command(Class<? extends Module> module, String name, String description, String usage, Category category) {
+    public void Command(Class<? extends ModuleBasee> module, String name, String description, String usage, Category category) {
         this.module = module;
         this.name = name;
         this.description = description;
@@ -58,7 +57,7 @@ public abstract class Command extends ListenerAdapter {
         commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
-    public void Command(Class<? extends Module> module, String name, String description, String usage) {
+    public void Command(Class<? extends ModuleBasee> module, String name, String description, String usage) {
         this.module = module;
         this.name = name;
         this.description = description;
@@ -69,7 +68,7 @@ public abstract class Command extends ListenerAdapter {
         commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
-    public void Command(Class<? extends Module> module, String name, String description) {
+    public void Command(Class<? extends ModuleBasee> module, String name, String description) {
         this.module = module;
         this.name = name;
         this.description = description;
@@ -82,7 +81,7 @@ public abstract class Command extends ListenerAdapter {
         commandManager.ModuleCommandList.put(module, this.getClass());
     }
 
-    public void Command(Class<? extends Module> module, String name) {
+    public void Command(Class<? extends ModuleBasee> module, String name) {
         this.module = module;
         this.name = name;
         this.description = "No description given";

@@ -1,6 +1,6 @@
-import fr.askyna.bot.modules.Module;
+import fr.askyna.bot.modules.ModuleBasee;
 
-public class TestModule extends Module {
+public class TestModule extends ModuleBasee {
     public TestModule() {
         super("ABC", "ABC_Description", "Askyna");
     }

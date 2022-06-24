@@ -1,6 +1,6 @@
 package fr.askyna.bot.test;
 
-import fr.askyna.bot.Category;
+import fr.askyna.bot.commands.Category;
 import fr.askyna.bot.commands.Command;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;

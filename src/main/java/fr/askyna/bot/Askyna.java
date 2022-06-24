@@ -33,7 +33,7 @@ public class Askyna {
             }
         }
 
-        Connection conn = r.connection().hostname("localhost").port(28015).connect();
+        //Connection conn = r.connection().hostname("localhost").port(28015).connect();
         //r.db("test").tableCreate("modules").run(conn);
 
         ModuleManager.registerModule(TestModule.class);
