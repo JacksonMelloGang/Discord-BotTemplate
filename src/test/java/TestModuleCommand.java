@@ -11,6 +11,7 @@ public class TestModuleCommand extends Command {
         this.module = TestModule.class;
         this.name = "AA";
         this.description = "BB";
+
     }
 
     @Override
