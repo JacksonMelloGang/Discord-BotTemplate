@@ -5,17 +5,15 @@ import java.util.List;
 
 public class ModuleManager {
 
-    private static List<Class <? extends ModuleBasee>> modules = new ArrayList<>();
-    private static List<Class <? extends ModuleBasee>> loaded_modules = new ArrayList<>();
-
-    private static List<ModuleBase> aloaded_modules = new ArrayList<ModuleBase>();
+    private static List<ModuleBase> modules = new ArrayList<>();
+   private static List<ModuleBase> loaded_modules = new ArrayList<ModuleBase>();
 
     public static void loadModules() {
-        for (Class<? extends ModuleBasee> module : getModules()) {
+        for(ModuleBase module : getModules()) {
             try {
-                ModuleBasee m = module.newInstance();
+                ModuleBase m = module.getClass().newInstance();
                 m.onLoad();
-                loaded_modules.add(m.getClass());
+                loaded_modules.add(module);
             } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -46,30 +44,17 @@ public class ModuleManager {
         }
     }
 
-    @Deprecated
-    public static void registerModule(Class<? extends ModuleBasee> module) {
-        System.out.println("Registering module " + module.getName());
-        try {
-            ModuleBasee m = module.newInstance();
-            m.onLoad();
-            loaded_modules.add(module);
-        } catch (InstantiationException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static void registerModule(ModuleBase module) {
         System.out.println("Registering module " + module.getName());
         try {
+            loaded_modules.add(module);
             Module m = module.getClass().newInstance();
             m.onLoad();
-            aloaded_modules.add(module);
         } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @Deprecated
     public static void unregisterModule(Class<? extends ModuleBasee> module) {
 
         System.out.println("Unregistering module " + module.getName());
@@ -88,18 +73,18 @@ public class ModuleManager {
         try {
             Module m = module.getClass().newInstance();
             m.onUnload();
-            aloaded_modules.remove(module);
+            loaded_modules.remove(module);
         } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static List<Class<? extends ModuleBasee>> getModules() {
+    public static List<ModuleBase> getModules() {
         return modules;
     }
 
     public static List<ModuleBase> getLoaded_modules() {
-        return aloaded_modules;
+        return loaded_modules;
     }
 
 

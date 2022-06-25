@@ -9,7 +9,6 @@ public class ConfigurationYaml {
     private String rethink_dbname;
     private int rethinkdb_port;
 
-
     public String getBot_token() {
         return bot_token;
     }

@@ -4,7 +4,7 @@ import fr.askyna.bot.commands.Command;
 
 import java.util.List;
 
-public class ModuleBase implements Module{
+public class ModuleBase extends ModulePlugin {
 
     private String name;
     private String description;
@@ -13,6 +13,8 @@ public class ModuleBase implements Module{
     public ModuleBase(String name, String description){
         this.name = name;
         this.description = description;
+
+        ModuleManager.registerModule(this);
     }
 
 
@@ -28,16 +30,6 @@ public class ModuleBase implements Module{
 
     @Override
     public void onReload() {
-
-    }
-
-    @Override
-    public void onRegister() {
-
-    }
-
-    @Override
-    public void onUnregister() {
 
     }
 

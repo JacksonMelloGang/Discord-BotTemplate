@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Main-Class: fr.askyna.bot.Askyna
+Class-Path: opus-java-natives-1.1.1.jar jackson-annotations-2.13.2.jar J
+ DA-5.0.0-alpha.12.jar jackson-databind-2.13.2.2.jar nv-websocket-client
+ -2.14.jar commons-collections4-4.4.jar jna-4.4.0.jar okio-2.8.0.jar jac
+ kson-core-2.13.2.jar annotations-23.0.0.jar kotlin-stdlib-1.4.10.jar re
+ thinkdb-driver-2.4.4.jar jsr305-3.0.2.jar opus-java-api-1.1.1.jar trove
+ 4j-3.0.3.jar snakeyaml-1.31-20220529.120306-20.jar slf4j-api-1.7.36.jar
+  kotlin-stdlib-common-1.4.0.jar opus-java-1.1.1.jar okhttp-4.9.3.jar
+
